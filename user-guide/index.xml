@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>What is Kubernetes security? on Kubernetes Security</title>
-    <link>/</link>
-    <description>Recent content in What is Kubernetes security? on Kubernetes Security</description>
+    <title>User Guide on Kubernetes Security</title>
+    <link>/user-guide/</link>
+    <description>Recent content in User Guide on Kubernetes Security</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/user-guide/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,38 +20,11 @@
     </item>
     
     <item>
-      <title>Prerequisites</title>
-      <link>/getting-started/prerequisites/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/getting-started/prerequisites/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Access your security platform</title>
       <link>/user-guide/access-stackrox/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/user-guide/access-stackrox/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Installation</title>
-      <link>/getting-started/installation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/getting-started/installation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Basic configuration</title>
-      <link>/getting-started/basic-configuration/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/getting-started/basic-configuration/</guid>
       <description></description>
     </item>
     
@@ -79,15 +52,6 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/user-guide/troubleshooting/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>https://github.com/svekars/hugo-test</title>
-      <link>/_footer/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/_footer/</guid>
       <description></description>
     </item>
     
