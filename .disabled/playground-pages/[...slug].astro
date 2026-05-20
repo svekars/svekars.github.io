@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Code } from 'astro:components';
+import { getCollection, render } from 'astro:content';
+
+const REPO = 'svekars/svekars.github.io';
+const BRANCH = 'main';
+
+const notebookSources = import.meta.glob('/notebooks/*.py', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+
+export async function getStaticPaths() {
+  const entries = await getCollection('playground');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const sourcePath = `/notebooks/${entry.data.notebook}.py`;
+const rawSource = notebookSources[sourcePath] ?? '';
+
+const githubUrl = `https://github.com/${REPO}/blob/${BRANCH}/notebooks/${entry.data.notebook}.py`;
+
+const replitUrl = entry.data.replit;
+const replitEmbedUrl = replitUrl
+  ? (replitUrl.includes('?') ? replitUrl : `${replitUrl}?embed=true&theme=light`)
+  : null;
+---
+
+<BaseLayout title={`${entry.data.title}, Playground`} description={entry.data.description}>
+  <article>
+    <header class="post-header">
+      <span class="eyebrow"><a href="/playground">Playground</a></span>
+      <h1>{entry.data.title}</h1>
+    </header>
+
+    <div class="post-body">
+      <Content />
+    </div>
+
+    {replitEmbedUrl ? (
+      <div class="replit-wrap">
+        <iframe
+          src={replitEmbedUrl}
+          title={`${entry.data.title} on Replit`}
+          loading="lazy"
+          allow="clipboard-read; clipboard-write"
+        />
+      </div>
+    ) : (
+      <div class="replit-placeholder">
+        <p><strong>Interactive Replit not configured yet.</strong></p>
+        <p>To enable, create a public Replit with the source below, then add its URL to <code>src/content/playground/{entry.id}.md</code> under <code>replit:</code>.</p>
+      </div>
+    )}
+
+    <details class="source-details">
+      <summary>View source</summary>
+      <Code code={rawSource} lang="python" theme="github-light" wrap />
+      <p class="source-actions">
+        <a href={githubUrl} rel="noopener">View on GitHub</a>
+      </p>
+    </details>
+  </article>
+</BaseLayout>
+
+<style>
+  .post-header {
+    padding: 3rem 0 1.5rem;
+  }
+  .post-header h1 {
+    margin: 0.25rem 0 0.5rem;
+  }
+  .post-body {
+    margin-bottom: 1.5rem;
+  }
+  .replit-wrap {
+    margin: 0 0 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+  .replit-wrap iframe {
+    display: block;
+    width: 100%;
+    height: 560px;
+    border: 0;
+  }
+  .replit-placeholder {
+    margin: 0 0 2rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px dashed var(--color-border);
+    border-radius: 6px;
+    background: var(--color-surface);
+    color: var(--color-muted);
+    font-size: 0.92rem;
+  }
+  .replit-placeholder p {
+    margin: 0 0 0.5rem;
+  }
+  .replit-placeholder p:last-child {
+    margin-bottom: 0;
+  }
+  .source-details {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+  }
+  .source-details summary {
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    font-weight: 600;
+    user-select: none;
+  }
+  .source-details[open] summary {
+    margin-bottom: 0.75rem;
+  }
+  .source-actions {
+    margin: 0.75rem 0 0;
+    font-size: 0.85rem;
+  }
+  article :global(pre.astro-code) {
+    background: #f4f1ea !important;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  @media (max-width: 600px) {
+    .replit-wrap iframe {
+      height: 420px;
+    }
+  }
+</style>

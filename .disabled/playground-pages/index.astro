@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const entries = (await getCollection('playground'))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Playground, Svetlana Karslioglu" description="Small executable PyTorch examples. CPU only. Run them with one click on Binder.">
+  <section class="hero">
+    <span class="eyebrow">Playground</span>
+    <h1>Playground</h1>
+    <p class="lede">
+      A handful of small PyTorch examples that you can edit and run right on this page.
+      Each one is embedded as a Replit, so the code lives in an editor next to its output.
+      CPU only, no sign-in.
+    </p>
+  </section>
+
+  <hr />
+
+  <ul class="post-list">
+    {entries.map((entry) => (
+      <li>
+        <a href={`/playground/${entry.id}/`}>{entry.data.title}</a>
+        <p class="muted" style="margin: 0.25rem 0 0; font-size: 0.92rem;">{entry.data.description}</p>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

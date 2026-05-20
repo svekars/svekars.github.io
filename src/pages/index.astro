@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import portrait from '../assets/svetlana.jpeg';
+---
+
+<BaseLayout title="Svetlana Karslioglu" description="Information Solutions Engineer at Meta, working on PyTorch documentation and AI-native developer experiences.">
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="eyebrow">San Francisco Bay Area</span>
+        <h1>Svetlana Karslioglu</h1>
+        <p class="role">Information Solutions Engineer at Meta. Developer documentation, content systems, AI-native experiences.</p>
+        <p class="lede">
+          10+ years building docs platforms, pipelines, and content for products engineers use directly.
+          Currently at Meta on PyTorch, working on
+          <a href="https://docs.pytorch.org">docs.pytorch.org</a>
+          and the AI-native experiences layered on top of it.
+        </p>
+      </div>
+      <Image src={portrait} alt="Portrait of Svetlana Karslioglu" class="hero-portrait" widths={[180, 280, 400]} sizes="(max-width: 600px) 140px, 180px" />
+    </div>
+  </section>
+
+  <style>
+    .hero-inner {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    .hero-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .hero-portrait {
+      width: 180px;
+      height: auto;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    @media (max-width: 600px) {
+      .hero-inner {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .hero-portrait {
+        width: 140px;
+      }
+    }
+  </style>
+
+  <hr />
+
+  <section>
+    <span class="eyebrow">Experience</span>
+    <h2>Where I've worked</h2>
+
+    <div class="experience-item">
+      <h3>Meta, Information Solutions Engineer (PyTorch)</h3>
+      <p class="meta">Aug 2020 to Present &middot; Menlo Park, CA</p>
+      <ul>
+        <li>
+          Supporting PyTorch releases. Launch planning, keeping
+          <a href="https://docs.pytorch.org">docs.pytorch.org</a> in sync with the API, and the
+          Sphinx docs-as-code pipeline that lets engineers contribute directly
+        </li>
+        <li>
+          Implementing AI-native solutions. Ensuring the docs are accessible and parsable by LLMs,
+          building the retrieval layer that sits on top of them, and using Claude to scan, draft,
+          and audit at corpus scale
+        </li>
+        <li>
+          Co-authored <a href="https://arxiv.org/abs/2605.18857"><em>The 99% Success Paradox: When
+          Near-Perfect Retrieval Equals Random Selection</em></a>
+          (<a href="https://iclr-blogposts.github.io/2026/blog/2026/bits-over-random/">accepted to
+          the ICLR 2026 blog post track</a>), on how production RAG systems can report near-perfect
+          retrieval while actually selecting documents at random
+        </li>
+        <li>
+          Created and maintain <a href="https://pypi.org/project/pytorch-sphinx-theme2/">pytorch-sphinx-theme2</a>,
+          the Sphinx theme used by docs.pytorch.org
+        </li>
+        <li>
+          <a href="https://docs.pytorch.org/docs/2.12/community/persons_of_interest.html#docs-tutorials">PyTorch Docs Maintainer</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="experience-item">
+      <h3>Pachyderm, Senior Technical Writer</h3>
+      <p class="meta">Jun 2019 to Aug 2020 &middot; San Francisco Bay Area</p>
+      <p>
+        Documentation for a Kubernetes-native data versioning and ML pipelines platform. Wrote
+        tutorials, conceptual guides, and API reference. Published
+        <em>Reproducible Data Science with Pachyderm</em>. Worked directly with engineering and
+        product on launch content.
+      </p>
+    </div>
+
+    <div class="experience-item">
+      <h3>Rackspace, Information Developer</h3>
+      <p class="meta">Jan 2018 to Jun 2019 &middot; Santa Clara, CA</p>
+      <p>
+        Documentation for cloud and container products, including Kubernetes-as-a-Service. Improved
+        site search and UX on the docs platform. Shipped content every sprint on an agile engineering
+        team.
+      </p>
+    </div>
+
+    <div class="experience-item">
+      <h3>Mirantis, Information Architect and Senior Technical Writer</h3>
+      <p class="meta">Jul 2015 to Jan 2018 &middot; Mountain View and Sunnyvale, CA</p>
+      <p>
+        Defined the information architecture and content standards for an OpenStack-based cloud
+        platform. Helped design the open-source CI/CD docs toolchain (Sphinx, Gerrit, Jenkins).
+        Upstream OpenStack contributor. Speaker at OpenStack Summit Austin 2016.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Publications and Talks</span>
+    <h2>Selected work</h2>
+
+    <div class="publication">
+      <h3>The 99% Success Paradox: When Near-Perfect Retrieval Equals Random Selection</h3>
+      <p class="authors">
+        Vyzantinos Repantis, Harshvardhan Singh, Tony Joseph, Cien Zhang, Akash Vishwakarma,
+        Svetlana Karslioglu, Michael Wyatt Thot, Ameya Gawde.
+        <a href="https://arxiv.org/abs/2605.18857">arXiv:2605.18857</a>. Accepted to the
+        <a href="https://iclr-blogposts.github.io/2026/blog/2026/bits-over-random/">ICLR 2026 blog post track</a>.
+      </p>
+      <p class="abstract">
+        Introduces Bits-over-Random (BoR), a chance-corrected measure of retrieval selectivity.
+        Shows that on 20 Newsgroups, BM25 and SPLADE both report &gt;99% success at K=100 while
+        actual selectivity is near zero, and downstream RAG accuracy degrades accordingly. The
+        same collapse shows up in LLM agent tool selection when the catalog is small.
+      </p>
+    </div>
+
+    <div class="publication">
+      <h3>Reproducible Data Science with Pachyderm</h3>
+      <p class="abstract">Practitioner guide on versioned data pipelines for ML workflows.</p>
+    </div>
+
+    <div class="publication">
+      <h3>Cisco Integrated Desktop Virtualization Solution</h3>
+      <p class="abstract">Solution architecture publication on enterprise VDI.</p>
+    </div>
+
+    <div class="publication">
+      <h3>Speaker, OpenStack Summit Austin 2016</h3>
+      <p class="abstract"><a href="https://www.openstack.org/summit/austin-2016/">openstack.org/summit/austin-2016</a></p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Skills</span>
+    <h2>Tools and topics</h2>
+    <ul class="inline-list">
+      <li>Python</li>
+      <li>PyTorch</li>
+      <li>Sphinx</li>
+      <li>Docker</li>
+      <li>Kubernetes</li>
+      <li>Docs-as-code (CI/CD)</li>
+      <li>LLM-powered content workflows</li>
+      <li>RAG</li>
+      <li>Information architecture</li>
+      <li>Technical writing and editing</li>
+      <li>Developer experience</li>
+    </ul>
+  </section>
+
+  <section>
+    <span class="eyebrow">Education</span>
+    <h2>Where I studied</h2>
+    <p>
+      <strong>University of California, Santa Cruz.</strong> Certificate in Technical and Scientific Communication.
+    </p>
+    <p>
+      <strong>Kuban State University.</strong> Master's Degree, International Relations.
+    </p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Languages</span>
+    <h2>Spoken languages</h2>
+    <ul class="inline-list">
+      <li>English (Native or Bilingual)</li>
+      <li>Russian (Native or Bilingual)</li>
+    </ul>
+  </section>
+
+  <section>
+    <span class="eyebrow">Contact</span>
+    <h2>Get in touch</h2>
+    <p>
+      <a href="mailto:svetlana.karslioglu@gmail.com">svetlana.karslioglu@gmail.com</a> &middot;
+      <a href="https://www.linkedin.com/in/svetlana-karslioglu">LinkedIn</a> &middot;
+      <a href="https://github.com/svekars">GitHub</a>
+    </p>
+  </section>
+</BaseLayout>

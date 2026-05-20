@@ -1,0 +1,64 @@
+---
+const pathname = Astro.url.pathname;
+const isActive = (href: string) => {
+  if (href === '/') return pathname === '/';
+  return pathname.startsWith(href);
+};
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand">Svetlana Karslioglu</a>
+    <nav>
+      <a href="/" class:list={[{ active: isActive('/') }]}>Resume</a>
+      <a href="/writing" class:list={[{ active: isActive('/writing') }]}>Writing</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+  .header-inner {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    gap: 1rem;
+  }
+  .brand {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text);
+    border-bottom: 0;
+  }
+  .brand:hover {
+    color: var(--color-accent);
+  }
+  nav {
+    display: flex;
+    gap: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+  }
+  nav a {
+    color: var(--color-muted);
+    border-bottom: 0;
+  }
+  nav a:hover,
+  nav a.active {
+    color: var(--color-text);
+  }
+  @media (max-width: 480px) {
+    .header-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+</style>

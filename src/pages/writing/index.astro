@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const entries = (await getCollection('writing', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<BaseLayout title="Writing, Svetlana Karslioglu" description="Notes on developer documentation, AI-native content, and PyTorch.">
+  <section class="hero">
+    <span class="eyebrow">Writing</span>
+    <h1>Writing</h1>
+    <p class="lede">
+      Notes on developer documentation, AI-native content systems, and what I'm thinking about at
+      PyTorch. Sporadic, not a publication schedule.
+    </p>
+  </section>
+
+  <hr />
+
+  <ul class="post-list">
+    {entries.map((entry) => (
+      <li>
+        <a href={`/writing/${entry.id}/`}>{entry.data.title}</a>
+        <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
+        {entry.data.description && <p class="muted" style="margin: 0.25rem 0 0; font-size: 0.92rem;">{entry.data.description}</p>}
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
