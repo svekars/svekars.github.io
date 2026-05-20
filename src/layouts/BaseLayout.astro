@@ -6,10 +6,17 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
 
-const { title, description = 'Svetlana Karslioglu, developer documentation and AI-native content systems.' } = Astro.props;
+const {
+  title,
+  description = 'Svetlana Karslioglu, developer documentation and AI-native content systems.',
+  image = '/og.jpeg',
+} = Astro.props;
+
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = new URL(image, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -20,10 +27,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Svetlana Karslioglu" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content="Svetlana Karslioglu" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
