@@ -2,6 +2,7 @@
 title: "Fine-tuning a language model on PyTorch docs with LoRA and RAG"
 description: A small Colab-runnable walkthrough that combines a parameter-efficient fine-tune of Qwen 2.5 with retrieval over the torch docstrings.
 date: 2026-06-01
+image: ../../assets/writing/lora-pytorch-docs.png
 ---
 
 <p><a href="https://colab.research.google.com/drive/1F-lP8-BinkTkH2GKxVxMmtwlJoiEm6yV?usp=sharing" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" /></a></p>

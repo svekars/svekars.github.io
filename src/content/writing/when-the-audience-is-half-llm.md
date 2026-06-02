@@ -2,6 +2,7 @@
 title: When the audience is half-LLM
 description: What changes about documentation when models are reading it on behalf of developers, and why most of the old assumptions break.
 date: 2026-05-03
+image: ../../assets/writing/when-the-audience-is-half-llm.png
 ---
 
 For most of the history of technical documentation, the reader was a human. Now they often aren't, or not entirely. A meaningful fraction of the people who would have read docs.pytorch.org never see the page. They see whatever an LLM pulled out of it: a paragraph in a chat reply, a snippet behind a code completion, a chunk buried inside a longer answer. The page is still there. The reader is not.

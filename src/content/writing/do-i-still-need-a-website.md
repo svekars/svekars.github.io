@@ -2,6 +2,7 @@
 title: "My code is open-source and LLMs can read it, why do I need a website?"
 description: The fact that models can read everything published online doesn't make personal websites redundant. It makes them more important than they used to be.
 date: 2026-05-20
+image: ../../assets/writing/do-i-still-need-a-website.png
 ---
 
 It's a question I hear a lot lately, in some form or another. "Why bother with a personal site? My work is on GitHub. Anyone who wants to know what I do can just ask a model to summarize my repos."

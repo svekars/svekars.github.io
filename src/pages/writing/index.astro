@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
 const entries = (await getCollection('writing', ({ data }) => !data.draft))
@@ -23,11 +24,65 @@ const formatDate = (d: Date) =>
 
   <ul class="post-list">
     {entries.map((entry) => (
-      <li>
-        <a href={`/writing/${entry.id}/`}>{entry.data.title}</a>
-        <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
-        {entry.data.description && <p class="muted" style="margin: 0.25rem 0 0; font-size: 0.92rem;">{entry.data.description}</p>}
+      <li class="post-list-item">
+        <a href={`/writing/${entry.id}/`} class="post-thumb-link" aria-hidden="true" tabindex="-1">
+          {entry.data.image ? (
+            <Image src={entry.data.image} alt="" width={240} height={180} class="post-thumb" />
+          ) : (
+            <span class="post-thumb post-thumb-empty" />
+          )}
+        </a>
+        <div class="post-meta">
+          <a href={`/writing/${entry.id}/`}>{entry.data.title}</a>
+          <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
+          {entry.data.description && <p class="muted post-blurb">{entry.data.description}</p>}
+        </div>
       </li>
     ))}
   </ul>
 </BaseLayout>
+
+<style>
+  .post-list-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .post-thumb-link {
+    display: block;
+    border: 0;
+  }
+  .post-thumb {
+    display: block;
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .post-thumb-empty {
+    background: var(--color-surface);
+  }
+  .post-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .post-blurb {
+    margin: 0.25rem 0 0;
+    font-size: 0.92rem;
+  }
+  @media (max-width: 600px) {
+    .post-list-item {
+      grid-template-columns: 80px 1fr;
+    }
+    .post-thumb {
+      width: 80px;
+      height: 60px;
+    }
+  }
+</style>
