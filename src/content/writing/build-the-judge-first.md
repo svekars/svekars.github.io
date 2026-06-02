@@ -2,6 +2,7 @@
 title: Build the docstring judge before the docstring writer
 description: The tempting move is to ship an LLM that rewrites stale docstrings. The right move is to ship the thing that can tell you whether a rewritten docstring is correct. A walkthrough using PyTorch as the case study.
 date: 2026-06-02
+image: ../../assets/writing/build-the-judge-first.png
 ---
 
 Every codebase with public APIs has a docs drift problem. New flags ship, defaults change, helpers move between modules, and the docstrings users read describe a version of the code that no longer exists. The cost of this used to be bounded by how often a human opened the page and how loudly they complained. That bound is gone. The reader is now often a model, and a model does not complain. It confidently quotes what it found and moves on.
